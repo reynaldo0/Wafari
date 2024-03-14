@@ -1,5 +1,4 @@
 /* Navbar Open */
-
 * {
   margin: 0;
   padding: 0;
@@ -17,27 +16,23 @@ body {
 
 /* Scrollbar Open */
 ::-webkit-scrollbar {
-  width: auto;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(transparent, #03dac6);
+  background: white;
   border-radius: 12px;
 }
 
 ::-webkit-scrollbar-track {
   background-color: #1e1f26;
-  border-radius: 12px;
 }
 
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(transparent, rgb(50, 0, 10));
+  background: rgb(192, 191, 191);
   border-radius: 12px;
-
-
 }
-
 /* close scrollbar */
 
 .nama-web {
@@ -118,56 +113,45 @@ navigasi {
 .nav-bar ul {
   display: flex;
 }
-
 .nav-bar ul li a {
   display: block;
-  --glow-color: rgb(255, 255, 255);
-  --glow-spread-color: rgba(255, 255, 255, 0.781);
-  --enhanced-glow-color: rgb(231, 206, 255);
-  --btn-color: rgb(100, 61, 136);
-  border: .25em solid var(--glow-color);
-  padding: 10px 25px;
-  color: var(--glow-color);
+  --btn-color: rgb(255, 255, 255);
+  padding: 10px 15px;
+  color: var(--btn-color);
   font-size: 15px;
-  border-radius: 1em;
   outline: none;
-  text-shadow: 0 0 .0em var(--glow-color);
   position: relative;
-  transition: all 0.3s;
-  border: none;
+  transition: color 0.3s;
+  text-decoration: none; 
   margin: 10px;
-
 }
 
 .nav-bar ul li a::after {
-  pointer-events: none;
+  content: '';
   position: absolute;
-  top: 120%;
   left: 0;
-  height: 100%;
+  bottom: 0;
   width: 100%;
-  filter: blur(2em);
-  opacity: .7;
-  transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+  height: 2px; /* Ketebalan garis bawah */
+  background-color: var(--btn-color); /* Warna garis bawah */
+  transform: scaleX(0); /* Awalnya set scale X menjadi 0 */
+  transition: transform 0.3s ease; /* Transisi saat berubah scale */
+}
+
+.nav-bar ul li a:hover::after,
+.nav-bar ul li a.active::after { /* Menambahkan garis bawah saat hover dan active */
+  transform: scaleX(1);
+
 }
 
 .nav-bar ul li a:hover {
-  color: var(--btn-color);
-  background-color: var(--glow-color);
-  box-shadow: 0 0 1em .25em var(--glow-color),
-    0 0 2px 2px var(--glow-spread-color),
-    inset 0 0 .75em .25em var(--glow-color);
-  color: #181818;
-  transition: 0.5s;
+  color: #ffffff;
 }
 
 .nav-bar ul li a.active {
-  box-shadow: 0 0 1em .25em var(--glow-color),
-    0 0 2px 2px var(--glow-spread-color),
-    inset 0 0 .5em .25em var(--glow-color);
-  background-color: #fefefe;
-  color: #181818;
+  color: #ffffff;
 }
+
 
 @media only screen and (max-width: 1320px) {
   navigasi {
@@ -649,6 +633,7 @@ body {
 .swiper-button-prev {
   width: 50px;
   height: 50px;
+  padding-right: 15px;
   background-image: none;
   background-color: #6e30ff;
   z-index: 2;

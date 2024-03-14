@@ -13,27 +13,41 @@ body {
 
 /* text jkt p t b s  */
 strong {
-    -webkit-text-stroke: rgb(255, 255, 255) 0.4px;
-    color: #000;
-
+    color: #ffffff;
+    position: relative;
+    display: inline-block;
 }
 
-strong:hover {
-
-    color: rgb(65, 2, 2);
-    -webkit-text-stroke: rgb(255, 255, 255) 0.3px;
-    transform: translateY(-10px);
+@keyframes underlineMove {
+    0% {
+        transform: scaleX(0);
+    }
+    100% {
+        transform: scaleX(1);
+    }
 }
 
+.underline-animation::after {
+    content: '';
+    position: absolute;
+    bottom: calc(50% - 1px);
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    transform: scaleX(0);
+    animation: underlineMove 3s forwards; /* Durasi animasi 1 detik */
+}
 /* close jkt */
 
 /* Scrollbar Open */
 ::-webkit-scrollbar {
-    width: auto;
+    width: 12px;
   }
   
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(transparent, #03dac6);
+    background: white;
     border-radius: 12px;
   }
   
@@ -43,7 +57,7 @@ strong:hover {
   
   
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(transparent, rgb(50, 0, 10));
+    background: rgb(192, 191, 191);
     border-radius: 12px;
   }
   /* close scrollbar */
@@ -156,102 +170,21 @@ h3.span {
     right: 0;
     z-index: 0;
 }
-
 .loader span {
     color: #faebd7;
     text-shadow: 0 0 0 #faebd7;
-    -webkit-animation: loading 1s ease-in-out infinite alternate;
+    animation: loading 2.1s ease-in-out infinite alternate;
 }
 
-@-webkit-keyframes loading {
+@keyframes loading {
     to {
         text-shadow: 20px 0 70px #ff0266;
         color: #ff0266;
     }
 }
 
-.loader span:nth-child(2) {
-    -webkit-animation-delay: 0.1s;
-}
-
-.loader span:nth-child(3) {
-    -webkit-animation-delay: 0.2s;
-}
-
-.loader span:nth-child(4) {
-    -webkit-animation-delay: 0.3s;
-}
-
-.loader span:nth-child(5) {
-    -webkit-animation-delay: 0.4s;
-}
-
-.loader span:nth-child(6) {
-    -webkit-animation-delay: 0.5s;
-}
-
-.loader span:nth-child(7) {
-    -webkit-animation-delay: 0.6s;
-}
-
-.loader span:nth-child(8) {
-    -webkit-animation-delay: 0.7s;
-}
-
-.loader span:nth-child(9) {
-    -webkit-animation-delay: 0.8s;
-}
-
-.loader span:nth-child(10) {
-    -webkit-animation-delay: 0.9s;
-}
-
-.loader span:nth-child(11) {
-    -webkit-animation-delay: 1s;
-}
-
-.loader span:nth-child(12) {
-    -webkit-animation-delay: 1.1s;
-}
-
-.loader span:nth-child(13) {
-    -webkit-animation-delay: 1.2s;
-}
-
-.loader span:nth-child(14) {
-    -webkit-animation-delay: 1.3s;
-}
-
-.loader span:nth-child(15) {
-    -webkit-animation-delay: 1.4s;
-}
-
-.loader span:nth-child(16) {
-    -webkit-animation-delay: 1.5s;
-}
-
-.loader span:nth-child(17) {
-    -webkit-animation-delay: 1.6s;
-}
-
-.loader span:nth-child(18) {
-    -webkit-animation-delay: 1.7s;
-}
-
-.loader span:nth-child(19) {
-    -webkit-animation-delay: 1.8s;
-}
-
-.loader span:nth-child(20) {
-    -webkit-animation-delay: 1.9s;
-}
-
-.loader span:nth-child(21) {
-    -webkit-animation-delay: 2s;
-}
-
-.loader span:nth-child(22) {
-    -webkit-animation-delay: 2.1s;
+.loader span:nth-child(n) {
+    animation-delay: calc(0.1s * (n - 1));
 }
 
 /* close canvas */
@@ -308,52 +241,42 @@ header {
 
 .nav-bar ul li a {
     display: block;
-    --glow-color: rgb(255, 255, 255);
-    --glow-spread-color: rgba(255, 255, 255, 0.781);
-    --enhanced-glow-color: rgb(231, 206, 255);
-    --btn-color: rgb(100, 61, 136);
-    border: .25em solid var(--glow-color);
-    padding: 10px 25px;
-    color: var(--glow-color);
-    font-size: 15px;
-    border-radius: 1em;
-    outline: none;
-    text-shadow: 0 0 .0em var(--glow-color);
-    position: relative;
-    transition: all 0.3s;
-    border: none;
-    margin: 7px;
-}
-
-.nav-bar ul li a::after {
-    pointer-events: none;
-    position: absolute;
-    top: 120%;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    filter: blur(2em);
-    opacity: .7;
-    transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
-}
-
-.nav-bar ul li a:hover {
+    --btn-color: rgb(255, 255, 255);
+    padding: 10px 15px;
     color: var(--btn-color);
-    background-color: var(--glow-color);
-    box-shadow: 0 0 1em .25em var(--glow-color),
-        0 0 2px 2px var(--glow-spread-color),
-        inset 0 0 .75em .25em var(--glow-color);
-    color: #181818;
-    transition: 0.7s;
-}
-
-.nav-bar ul li a.active {
-    box-shadow: 0 0 1em .25em var(--glow-color),
-        0 0 2px 2px var(--glow-spread-color),
-        inset 0 0 .5em .25em var(--glow-color);
-    background-color: #fefefe;
-    color: #181818;
-}
+    font-size: 15px;
+    outline: none;
+    position: relative;
+    transition: color 0.3s;
+    text-decoration: none; 
+    margin: 10px;
+  }
+  
+  .nav-bar ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px; /* Ketebalan garis bawah */
+    background-color: var(--btn-color); /* Warna garis bawah */
+    transform: scaleX(0); /* Awalnya set scale X menjadi 0 */
+    transition: transform 0.3s ease; /* Transisi saat berubah scale */
+  }
+  
+  .nav-bar ul li a:hover::after,
+  .nav-bar ul li a.active::after { /* Menambahkan garis bawah saat hover dan active */
+    transform: scaleX(1);
+  
+  }
+  
+  .nav-bar ul li a:hover {
+    color: #ffffff;
+  }
+  
+  .nav-bar ul li a.active {
+    color: #ffffff;
+  }
 
 .sticky {
     padding: 5px 100px;

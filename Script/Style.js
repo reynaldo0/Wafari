@@ -80,6 +80,45 @@ const particles = Particles.init({
     ]
 });
 
+// Detail parallax
+const strongElements = document.querySelectorAll("strong");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("underline-animation");
+      observer.unobserve(entry.target);
+    }
+  });
+});
+
+strongElements.forEach(element => {
+  observer.observe(element);
+});
+
+
+// Jalankan fungsi ketika halaman dimuat
+window.addEventListener("load", runAnimation);
+
+// Jalankan fungsi kembali saat tombol reload ditekan
+window.addEventListener("beforeunload", () => {
+    const strongElements = document.querySelectorAll("strong");
+
+    strongElements.forEach((element) => {
+        element.classList.remove("underline-animation");
+    });
+
+    const pElements = document.querySelectorAll("strong + p");
+
+    pElements.forEach((element) => {
+        element.classList.remove("underline-animation");
+    });
+
+    setTimeout(runAnimation, 100);
+});
+
+
+
 class NavigationPage {
     constructor() {
         this.currentId = null;
